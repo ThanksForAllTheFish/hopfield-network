@@ -1,0 +1,37 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+    def junitVersion = "4.11"
+    
+    compile "org.codehaus.groovy:groovy-all:2.0.8"
+  
+    testCompile  "junit:junit-dep:$junitVersion"
+  
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0",
+      "org.hamcrest:hamcrest-library:1.3"
+}
+
+test {
+  systemProperties 'property': 'value'
+}
+
+uploadArchives {
+  repositories {
+    flatDir {
+      dirs 'repos'
+    }
+  }
+}
