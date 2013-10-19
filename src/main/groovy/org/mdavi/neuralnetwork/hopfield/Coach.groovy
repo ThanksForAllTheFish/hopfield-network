@@ -13,11 +13,12 @@ class Coach
   }
   
   def obtainWeights = {
+    currentWeights ->
     int[][] weights = new int[NetworkSize.SIZE][NetworkSize.SIZE]
       
     for(row in 0..<NetworkSize.SIZE)
       for(col in 0..<NetworkSize.SIZE)
-        weights[row][col] = row == col? 0 : trainingSequence[row] * trainingSequence[col]
+        weights[row][col] = (row != col).compareTo(false) *( trainingSequence[row] * trainingSequence[col] + currentWeights[row][col] )
     return weights    
   }
 }

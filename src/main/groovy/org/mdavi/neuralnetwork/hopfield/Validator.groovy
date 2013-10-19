@@ -1,13 +1,18 @@
 package org.mdavi.neuralnetwork.hopfield
 
+import java.awt.TexturePaintContext.Int;
+
 class Validator
 {
 
   HopfieldNetwork network
   
-  Validator(training, network) {
+  Validator(network, trainings) {
     this.network = network
-    this.network.train(training)
+    trainings.each {
+      training ->
+      this.network.train(training)
+    }
   }
   
   def computePattern = {

@@ -29,4 +29,19 @@ class HopfieldNetworkTest extends Specification
     where:
       pattern << [[0,1,0,1], [1,0,1,0]]
   }
+  
+  def "Hopfield nework multipattern recognition" () {
+    when: "The hopfield network is trained to recognize a pattern"
+      network.train(pattern[0])
+      network.train(pattern[1])
+    then: "can recognize that pattern and the inverse one"
+      def output = network.recognize(input)
+      output == input
+    where:
+      pattern << [
+        [[0,1,0,1], [1,0,0,1]],
+        [[0,1,0,1], [1,0,0,1]]]
+      input << [[0,1,1,0], [1,0,1,0]]
+      
+  }
 }

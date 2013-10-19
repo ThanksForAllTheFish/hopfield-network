@@ -16,7 +16,7 @@ repositories {
 dependencies {
     def junitVersion = "4.11"
     
-    compile "org.codehaus.groovy:groovy-all:2.0.8"
+    compile "org.codehaus.groovy:groovy-all:2.1.8"
   
     testCompile  "junit:junit-dep:$junitVersion"
   

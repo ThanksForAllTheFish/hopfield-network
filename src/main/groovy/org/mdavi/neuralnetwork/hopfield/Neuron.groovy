@@ -14,9 +14,7 @@ class Neuron
     
     weights.eachWithIndex {
       connectionWeight, i ->
-      if( pattern[i] )
-        activation += connectionWeight
-      
+        activation += pattern[i]*connectionWeight
     }
     
     return activation

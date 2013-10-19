@@ -21,12 +21,15 @@ class LayerTest extends Specification
       Layer layer = new Layer(weights)
       def output = layer.activateFor(pattern)
     then: "it computes an out pattern"
-      output.size() == 4
       output == pattern
     where:
       weights << [
-        [[0, -1, 1, -1], [-1, 0, -1, 1],[1, -1, 0, -1],[-1, 1, -1, 0]]
+        [[0, -1, 1, -1], [-1, 0, -1, 1],[1, -1, 0, -1],[-1, 1, -1, 0]],
+        [[0, -2, 0, 0], [-2, 0, 0, 0],[0, 0, 0, -2],[0, 0, -2, 0]],
+        [[0, -2, 0, 0], [-2, 0, 0, 0],[0, 0, 0, -2],[0, 0, -2, 0]]
         ]
-      pattern << [[0,1,0,1]]
+      pattern << [[0,1,0,1],
+        [0,1,0,1],
+        [1,0,0,1]]
   }
 }
