@@ -1,22 +1,24 @@
-package org.mdavi.neuralnetwork.hopfield
+package org.mdavi.neuralnetwork.hopfield.network.components.layer
 
-class Layer
+import org.mdavi.neuralnetwork.hopfield.network.components.neuron.HopfieldNeuron;
+
+class HopfieldLayer implements Layer
 {
 
   def weights
-  Neuron[] neurons
+  def neurons
   
-  Layer(weights) {
+  HopfieldLayer(neuronCreator, weights) {
     this.weights = weights
-    neurons = new Neuron[this.weights.size()]
+    neurons = []
     this.weights.eachWithIndex {
       weight, index ->
-      neurons[index] = new Neuron(weight);
+      neurons[index] = neuronCreator.newNeuron(weight);
     }
   }
   
-  def activateFor = {
-    pattern ->
+  @Override
+  def activateFor (pattern) {
     
     def output = []
     

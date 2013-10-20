@@ -1,4 +1,4 @@
-package org.mdavi.neuralnetwork.hopfield
+package org.mdavi.neuralnetwork.hopfield.network
 
 class NetworkSize
 {

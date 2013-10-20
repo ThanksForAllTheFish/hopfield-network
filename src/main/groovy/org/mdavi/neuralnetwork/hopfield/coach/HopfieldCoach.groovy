@@ -1,19 +1,21 @@
-package org.mdavi.neuralnetwork.hopfield
+package org.mdavi.neuralnetwork.hopfield.coach
 
-class Coach
+import org.mdavi.neuralnetwork.hopfield.network.NetworkSize;
+
+class HopfieldCoach implements Coach
 {
   def trainingSequence = []
   
-  def computeTrainingSequence = {
-    trainingSequence ->
+  @Override
+  def computeTrainingSequence (trainingSequence) {
     trainingSequence.eachWithIndex {
       value, index ->
       this.trainingSequence[index] = value?: -1
     }
   }
   
-  def obtainWeights = {
-    currentWeights ->
+  @Override
+  def obtainWeights (currentWeights) {
     int[][] weights = new int[NetworkSize.SIZE][NetworkSize.SIZE]
       
     for(row in 0..<NetworkSize.SIZE)

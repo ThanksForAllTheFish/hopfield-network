@@ -1,6 +1,7 @@
-package org.mdavi.neuralnetwork.hopfield
+package org.mdavi.neuralnetwork.hopfield.coach
 
 import org.junit.Ignore;
+import org.mdavi.neuralnetwork.hopfield.network.NetworkSize;
 
 import spock.lang.Specification;
 
@@ -10,17 +11,17 @@ class CoachTest extends Specification
   def coach
   
   def setup () {
-    coach = new Coach()
+    coach = new HopfieldCoachCreator().newCoach()
   }
   
-  def "Coach input" () {
+  def "HopfieldCoach input" () {
     when: "The coach takes a ${NetworkSize.SIZE} input array as training sequence"
       coach.computeTrainingSequence( [0,1,0,1] )
     then: "it converts 0s to -1s"
       coach.trainingSequence == [-1,1,-1,1]
   }
   
-  def "Coach output" () {
+  def "HopfieldCoach output" () {
     when: "The coach takes a ${NetworkSize.SIZE} input array as training sequence and is asked to elaborate such sequence"
       coach.computeTrainingSequence( training )
     then: "it produces the weights of the connections"
@@ -32,7 +33,7 @@ class CoachTest extends Specification
         [[0, -1, -1, 1], [-1, 0, 1, -1],[-1, 1, 0, -1],[1, -1, -1, 0]]]
   }
   
-  def "Coach output for multiple training" () {
+  def "HopfieldCoach output for multiple training" () {
     when: "The coach takes a ${NetworkSize.SIZE} input array as training sequence and is asked to elaborate such sequence"
       coach.computeTrainingSequence( [0,1,0,1] )
       def weights = coach.obtainWeights([[0, 0, 0, 0], [0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]])

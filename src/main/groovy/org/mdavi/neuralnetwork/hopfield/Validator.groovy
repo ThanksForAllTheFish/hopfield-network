@@ -2,6 +2,8 @@ package org.mdavi.neuralnetwork.hopfield
 
 import java.awt.TexturePaintContext.Int;
 
+import org.mdavi.neuralnetwork.hopfield.network.HopfieldNetwork;
+
 class Validator
 {
 

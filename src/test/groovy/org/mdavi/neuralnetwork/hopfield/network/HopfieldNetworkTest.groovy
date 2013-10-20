@@ -1,4 +1,8 @@
-package org.mdavi.neuralnetwork.hopfield
+package org.mdavi.neuralnetwork.hopfield.network
+
+import org.mdavi.neuralnetwork.hopfield.coach.HopfieldCoachCreator;
+import org.mdavi.neuralnetwork.hopfield.network.components.layer.HopfieldLayerCreator
+import org.mdavi.neuralnetwork.hopfield.network.components.neuron.HopfieldNeuronCreator
 
 import spock.lang.Specification
 
@@ -6,7 +10,7 @@ class HopfieldNetworkTest extends Specification
 {
   HopfieldNetwork network
   def setup () {
-    network = new HopfieldNetwork()
+    network = new HopfieldNetwork(new HopfieldCoachCreator(), new HopfieldLayerCreator(new HopfieldNeuronCreator()))
   }
   
   def "Hopfield nework training" () {
@@ -31,17 +35,18 @@ class HopfieldNetworkTest extends Specification
   }
   
   def "Hopfield nework multipattern recognition" () {
-    when: "The hopfield network is trained to recognize a pattern"
+    when: "The hopfield network is trained to recognize more patterns"
       network.train(pattern[0])
       network.train(pattern[1])
-    then: "can recognize that pattern and the inverse one"
-      def output = network.recognize(input)
-      output == input
+    then: "can recognize both trained patterns and the inverse ones"
+      network.recognize(input) == input
     where:
       pattern << [
         [[0,1,0,1], [1,0,0,1]],
         [[0,1,0,1], [1,0,0,1]]]
-      input << [[0,1,1,0], [1,0,1,0]]
+      input << [
+        [0,1,1,0],
+        [1,0,1,0]]
       
   }
 }
