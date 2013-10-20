@@ -4,9 +4,9 @@ class HopfieldNeuronCreator implements NeuronCreator
 {
 
   @Override
-  def newNeuron (weights)
+  def newNeuron ()
   {
-    new HopfieldNeuron(weights)
+    new HopfieldNeuron()
   }
 
 }

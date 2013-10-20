@@ -7,9 +7,9 @@ class NeuronTest extends Specification
   
   def "HopfieldNeuron output" () {
     when: "The neuron receive an input pattern"
-      HopfieldNeuron neuron = new HopfieldNeuronCreator().newNeuron(weights)
+      HopfieldNeuron neuron = new HopfieldNeuronCreator().newNeuron()
       def activation = 0
-      activation += neuron.activateFor(pattern)
+      activation += neuron.activateFor(pattern, weights)
     then: "computes the activation value, summing up the weights related to the 1s in pattern"
       activation == expectedValue
     where:

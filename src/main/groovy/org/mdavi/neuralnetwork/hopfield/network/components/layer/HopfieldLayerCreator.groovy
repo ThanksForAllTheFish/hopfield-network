@@ -9,9 +9,9 @@ class HopfieldLayerCreator implements LayerCreator
   }
 
   @Override
-  def newLayer (weights)
+  def newLayer ()
   {
-    new HopfieldLayer(neuronCreator, weights)
+    new HopfieldLayer(neuronCreator)
   }
 
 }

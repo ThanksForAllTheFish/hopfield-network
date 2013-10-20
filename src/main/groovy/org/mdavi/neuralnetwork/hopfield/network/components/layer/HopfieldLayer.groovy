@@ -1,30 +1,27 @@
 package org.mdavi.neuralnetwork.hopfield.network.components.layer
 
+import org.mdavi.neuralnetwork.hopfield.network.NetworkSize;
 import org.mdavi.neuralnetwork.hopfield.network.components.neuron.HopfieldNeuron;
 
 class HopfieldLayer implements Layer
 {
 
-  def weights
   def neurons
   
-  HopfieldLayer(neuronCreator, weights) {
-    this.weights = weights
+  HopfieldLayer(neuronCreator) {
     neurons = []
-    this.weights.eachWithIndex {
-      weight, index ->
-      neurons[index] = neuronCreator.newNeuron(weight);
-    }
+    for(index in 0..<NetworkSize.SIZE)
+      neurons[index] = neuronCreator.newNeuron();
   }
   
   @Override
-  def activateFor (pattern) {
+  def activateFor (pattern, weigths) {
     
     def output = []
     
     neurons.eachWithIndex {
       neuron, index ->
-      def activation = neuron.activateFor(pattern)
+      def activation = neuron.activateFor(pattern, weigths[index])
       output[index] = threshold(activation)
     }
     

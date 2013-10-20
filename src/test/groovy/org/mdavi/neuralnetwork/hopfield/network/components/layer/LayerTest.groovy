@@ -15,21 +15,16 @@ class LayerTest extends Specification
 
   def "HopfieldLayer description" () {
     when: "The layer is created with the weights of the connections between the neurons"
-      HopfieldLayer layer = layerCreator.newLayer(weights)
+      HopfieldLayer layer = layerCreator.newLayer()
     then: "it is composed by ${NetworkSize.SIZE} neurons"
       layer.neurons?.size() == NetworkSize.SIZE
-    where:
-      weights << [
-        [[0, -1, 1, -1], [-1, 0, -1, 1],[1, -1, 0, -1],[-1, 1, -1, 0]]
-        ] 
   }
   
   def "HopfieldLayer output" () {
     when: "The layer is activated with an input pattern"
-      HopfieldLayer layer = layerCreator.newLayer(weights)
-      def output = layer.activateFor(pattern)
+      HopfieldLayer layer = layerCreator.newLayer()
     then: "it computes an out pattern"
-      output == pattern
+      layer.activateFor(pattern, weights) == pattern
     where:
       weights << [
         [[0, -1, 1, -1], [-1, 0, -1, 1],[1, -1, 0, -1],[-1, 1, -1, 0]],

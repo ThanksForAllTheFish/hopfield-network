@@ -2,14 +2,8 @@ package org.mdavi.neuralnetwork.hopfield.network.components.neuron
 
 class HopfieldNeuron implements Neuron
 {
-  private def weights = []
-  
-  HopfieldNeuron(weights) {
-    this.weights = weights
-  }
-  
   @Override
-  def activateFor (pattern) {
+  def activateFor (pattern, weights) {
     int activation = 0
     
     weights.eachWithIndex {
